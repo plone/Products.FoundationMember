@@ -1,7 +1,17 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
     xmlns:five="http://namespaces.zope.org/five"
-    i18n_domain="Products.FoundationMember">
+    i18n_domain="FoundationMember">
 
+  <!-- Register the GenericSetup extension profile so that we can
+       install the product
+  -->
+  <gs:registerProfile
+      name="default"
+      title="FoundationMember"
+      directory="profiles/default"
+      description="A friendly foundation member adder."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
 
 </configure>
