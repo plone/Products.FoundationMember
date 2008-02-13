@@ -1,0 +1,9 @@
+<html>
+<body>
+  <div metal:define-macro="typedescription">
+    <div tal:define="fieldset request/fieldset | string:contact"
+      tal:replace="structure python:here.schemata_help.get(fieldset, None)" />
+  </div>
+</body>
+</html>
+

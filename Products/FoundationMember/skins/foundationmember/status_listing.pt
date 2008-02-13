@@ -1,0 +1,126 @@
+<html metal:use-macro="here/main_template/macros/master">
+  <body>
+
+<div metal:fill-slot="main"
+      tal:define="result here/computeMembers;
+                  pendingMembers result/pendingMembers;
+                  renewedMembers result/renewedMembers;
+                  waitingMembers result/waitingMembers;
+                  emeritusMembers result/emeritusMembers;
+                  newApplications result/newApplications;
+                  againApplications result/againApplications;
+                  renewApplications result/renewApplications;
+                  initialMembers result/initialMembers;
+                  initialApplications result/initialApplications;
+                  rejectedApplications result/rejectedApplications;
+                  ">
+  <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+    Title or id
+  </h1>
+
+  <div metal:use-macro="here/document_actions/macros/document_actions">
+    Document actions (print, sendto etc)
+  </div>
+
+<h3>Approved and renewed members</h3>
+<dl class="collapsible inline collapsedOnLoad">
+  <dt class="collapsibleHeader">
+      <span tal:replace="python:len(renewedMembers)" /> Plonistas
+  </dt>
+  <dd class="collapsibleContent">
+    <ul tal:repeat="member renewedMembers">
+      <li><a tal:attributes="href member/absolute_url" tal:content="member/Title"></a></li>
+    </ul>
+  </dd>
+</dl>
+
+<h3>Approved members waiting for renewal</h3>
+<dl class="collapsible inline collapsedOnLoad">
+  <dt class="collapsibleHeader">
+      <span tal:replace="python:len(waitingMembers)" /> Plonistas
+  </dt>
+  <dd class="collapsibleContent">
+    <ul tal:repeat="member waitingMembers">
+      <li><a tal:attributes="href member/absolute_url" tal:content="member/Title"></a></li>
+    </ul>
+  </dd>
+</dl>
+
+<h3>Pending applications</h3>
+<p class="documentByLine"><span tal:replace="python:len(pendingMembers)" /> Plonistas</p>
+<h4>New applications</h4>
+<dl class="collapsible inline collapsedOnLoad">
+  <dt class="collapsibleHeader">
+      <span tal:replace="python:len(newApplications)" /> Plonistas
+  </dt>
+  <dd class="collapsibleContent">
+    <ul tal:repeat="member newApplications">
+      <li><a tal:attributes="href member/absolute_url" tal:content="member/Title"></a></li>
+    </ul>
+  </dd>
+</dl>
+<h4>Applications after rejection</h4>
+<dl class="collapsible inline collapsedOnLoad">
+  <dt class="collapsibleHeader">
+      <span tal:replace="python:len(againApplications)" /> Plonistas
+  </dt>
+  <dd class="collapsibleContent">
+    <ul tal:repeat="member againApplications">
+      <li><a tal:attributes="href member/absolute_url" tal:content="member/Title"></a></li>
+    </ul>
+  </dd>
+</dl>
+<h4>Renewal after emeritus</h4>
+<dl class="collapsible inline collapsedOnLoad">
+  <dt class="collapsibleHeader">
+      <span tal:replace="python:len(renewApplications)" /> Plonistas
+  </dt>
+  <dd class="collapsibleContent">
+    <ul tal:repeat="member renewApplications">
+      <li><a tal:attributes="href member/absolute_url" tal:content="member/Title"></a></li>
+    </ul>
+  </dd>
+</dl>
+
+<h3>Emeritus members</h3>
+<dl class="collapsible inline collapsedOnLoad">
+  <dt class="collapsibleHeader">
+      <span tal:replace="python:len(emeritusMembers)" /> Plonistas
+  </dt>
+  <dd class="collapsibleContent">
+    <ul tal:repeat="member emeritusMembers">
+      <li><a tal:attributes="href member/absolute_url" tal:content="member/Title"></a></li>
+    </ul>
+  </dd>
+</dl>
+
+<h3>People that were not approved as members or that have not submitted</h3>
+<p class="documentByLine"><span tal:replace="python:len(initialMembers)" /> Plonistas</p>
+<h4>Initial applications</h4>
+<dl class="collapsible inline collapsedOnLoad">
+  <dt class="collapsibleHeader">
+      <span tal:replace="python:len(initialApplications)" /> Plonistas
+  </dt>
+  <dd class="collapsibleContent">
+    <ul tal:repeat="member initialApplications">
+      <li><a tal:attributes="href member/absolute_url" tal:content="member/Title"></a></li>
+    </ul>
+  </dd>
+</dl>
+<h4>Rejected applications</h4>
+<dl class="collapsible inline collapsedOnLoad">
+  <dt class="collapsibleHeader">
+      <span tal:replace="python:len(rejectedApplications)" /> Plonistas
+  </dt>
+  <dd class="collapsibleContent">
+    <ul tal:repeat="member rejectedApplications">
+      <li><a tal:attributes="href member/absolute_url" tal:content="member/Title"></a></li>
+    </ul>
+  </dd>
+</dl>
+
+</div>
+
+  </body>
+</html>
+
