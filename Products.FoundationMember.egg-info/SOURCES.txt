@@ -1,0 +1,14 @@
+README.txt
+setup.cfg
+setup.py
+Products/__init__.py
+Products.FoundationMember.egg-info/PKG-INFO
+Products.FoundationMember.egg-info/SOURCES.txt
+Products.FoundationMember.egg-info/dependency_links.txt
+Products.FoundationMember.egg-info/entry_points.txt
+Products.FoundationMember.egg-info/namespace_packages.txt
+Products.FoundationMember.egg-info/not-zip-safe
+Products.FoundationMember.egg-info/requires.txt
+Products.FoundationMember.egg-info/top_level.txt
+Products/FoundationMember/__init__.py
+Products/FoundationMember/tests.py

@@ -1,0 +1,9 @@
+Changelog for Products.FoundationMember
+
+    (name of developer listed in brackets)
+
+Products.FoundationMember - 1.1 Unreleased
+
+    - Initial package structure.
+      [zopeskel]
+
