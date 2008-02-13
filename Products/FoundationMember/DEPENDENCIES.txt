@@ -1,0 +1,1 @@
+Plone 2.1 or newer with all its dependencies
