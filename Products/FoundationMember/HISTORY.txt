@@ -1,0 +1,21 @@
+Changelog for FoundationMember
+
+   (name of developer listed in brackets)
+
+FoundationMember 0.2 - Unreleased
+
+  * Fixed country name listing. Corrected European country names to use their
+    English spelling instead of a French one.
+    [hannosch]
+
+  * Updated workflow to include the emeritus status and corresponding
+    transitions as well as the renew workflow transition for approved members.
+    [hannosch]
+
+  * Updated some docs and code due to changed import locations.
+    [hannosch]
+
+FoundationMember 0.1 - Released March 25, 2006
+
+  * Initial version
+    [joelburton]
