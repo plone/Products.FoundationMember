@@ -1,48 +1,41 @@
-from Products.Archetypes.atapi import listTypes
-from Products.Archetypes.Extensions.utils import installTypes, install_subskin
-from Products.FoundationMember.config import *
+import transaction
 from Products.CMFCore.utils import getToolByName
-from zope.component import getUtility 
-from Products.GenericSetup.interfaces import ISetupTool
+
+PRODUCT_DEPENDENCIES = ()
 
 EXTENSION_PROFILES = ('Products.FoundationMember:default',) 
 
-import transaction
+def install(self, reinstall=False):
+    """Install a set of products (which themselves may either use Install.py
+    or GenericSetup extension profiles for their configuration) and then
+    install a set of extension profiles.
+    
+    One of the extension profiles we install is that of this product. This
+    works because an Install.py installation script (such as this one) takes
+    precedence over extension profiles for the same product in 
+    portal_quickinstaller. 
+    
+    We do this because it is not possible to install other products during
+    the execution of an extension profile (i.e. we cannot do this during
+    the importVarious step for this profile).
+    """
 
-from StringIO import StringIO
+    portal_quickinstaller = getToolByName(self, 'portal_quickinstaller')
+    portal_setup = getToolByName(self, 'portal_setup')
 
-def install(self):
-    out = StringIO()
+    for product in PRODUCT_DEPENDENCIES:
+        if reinstall and portal_quickinstaller.isProductInstalled(product):
+            portal_quickinstaller.reinstallProducts([product])
+            transaction.savepoint()
+        elif not portal_quickinstaller.isProductInstalled(product):
+            portal_quickinstaller.installProduct(product)
+            transaction.savepoint()
 
-    installTypes(self, out,
-                 listTypes(PROJECTNAME),
-                 PROJECTNAME)
+# XXX: This causes two FoundationMember products to show up?
 
-    install_subskin(self, out, GLOBALS)
+#    for extension_id in EXTENSION_PROFILES:
+#        portal_setup.runAllImportStepsFromProfile('profile-%s' % extension_id, purge_old=False)
+#        product_name = extension_id.split(':')[0]
+#        portal_quickinstaller.notifyInstalled(product_name)
+#        transaction.savepoint()
 
-    wf_tool = getToolByName(self, 'portal_workflow')
-    wf_tool.setChainForPortalTypes(pt_names=['FoundationMember'] , chain='foundation_member_workflow')
-    print >> out, 'Set foundation_member_workflow as default for foundation members'
-
-    ft = getToolByName(self, 'portal_factory')
-    portal_factory_types = ft.getFactoryTypes().keys()
-    for t in ['FoundationMember']:
-        if t not in portal_factory_types:
-            portal_factory_types.append(t)
-    ft.manage_setPortalFactoryTypes(listOfTypeIds=portal_factory_types)
-    print >> out, 'New types use portal_factory'
-
-    portal_setup = getUtility(ISetupTool)
-    quickinstaller = getToolByName(self, 'portal_quickinstaller')
-
-    # The following section is boilerplate code that can be reused when you 
-    # need to invoke a GenericSetup profile from Install.py. 
-    for extension_id in EXTENSION_PROFILES: 
-        portal_setup.setImportContext('profile-%s' % extension_id) 
-        portal_setup.runAllImportSteps(purge_old=False) 
-        product_name = extension_id.split(':')[0] 
-        quickinstaller.notifyInstalled(product_name) 
-        transaction.savepoint() 
-
-    print >> out, "Successfully installed %s." % PROJECTNAME
-    return out.getvalue()
