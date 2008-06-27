@@ -163,7 +163,7 @@ membership.  Becoming a member simply requires merit and this application.
 After this application is submitted, the Plone Foundation's membership
 committee will review it and make a recommendation on your application.</p>
 <p>For any questions about Plone Foundation membership, this form, or a pending
-application, please email <a href="membership-committee@lists.plone.org">membership-committee@lists.plone.org</a>.</p>"""
+application, please email <a href="mailto:membership-committee@lists.plone.org">membership-committee@lists.plone.org</a>.</p>"""
 
     schemata_help['survey']="""<p>The Plone Foundation needs information to
 better serve its members and the foundation's mission. Please take the extra
