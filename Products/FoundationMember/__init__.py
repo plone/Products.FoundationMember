@@ -1,9 +1,6 @@
-
-from Globals import package_home
 from Products.Archetypes.public import process_types, listTypes
 from Products.CMFCore import utils
 from Products.CMFCore.DirectoryView import registerDirectory
-import os, os.path
 
 from config import ADD_CONTENT_PERMISSION, PROJECTNAME, SKINS_DIR, GLOBALS
 
@@ -25,3 +22,4 @@ def initialize(context):
         extra_constructors = constructors,
         fti                = ftis,
         ).initialize(context)
+

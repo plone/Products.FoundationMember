@@ -1,8 +1,24 @@
 Changelog
 =========
 
-1.1 - Unreleased
+1.0 - Unreleased
 ----------------
 
-- First proper release
+* Fixed country name listing. Corrected European country names to use their
+  English spelling instead of a French one.
+  [hannosch]
+
+* Updated workflow to include the emeritus status and corresponding
+  transitions as well as the renew workflow transition for approved members.
+  [hannosch]
+
+* Updated some docs and code due to changed import locations.
+  [hannosch]
+
+
+0.1 - March 25, 2006
+--------------------
+
+* Initial version
+  [joelburton]
 
