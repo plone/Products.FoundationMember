@@ -4,6 +4,10 @@ Changelog
 1.0 - Unreleased
 ----------------
 
+
+1.0b1 - July 20, 2008
+---------------------
+
 * Fixed country name listing. Corrected European country names to use their
   English spelling instead of a French one.
   [hannosch]
