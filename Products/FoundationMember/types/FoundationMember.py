@@ -1,5 +1,19 @@
-from Products.Archetypes.atapi import *
-from Products.FoundationMember.config import *
+from Products.Archetypes.atapi import BaseFolder
+from Products.Archetypes.atapi import BaseFolderSchema
+from Products.Archetypes.atapi import ComputedField
+from Products.Archetypes.atapi import DisplayList
+from Products.Archetypes.atapi import IdWidget
+from Products.Archetypes.atapi import IntegerField
+from Products.Archetypes.atapi import IntegerWidget
+from Products.Archetypes.atapi import RichWidget
+from Products.Archetypes.atapi import Schema
+from Products.Archetypes.atapi import SelectionWidget
+from Products.Archetypes.atapi import StringField
+from Products.Archetypes.atapi import StringWidget
+from Products.Archetypes.atapi import TextField
+from Products.Archetypes.atapi import registerType
+from Products.FoundationMember.config import VIEW_PF_MEMBERS_DETAIL
+from Products.FoundationMember.config import MANAGE_PF_MEMBERS
 from AccessControl import ClassSecurityInfo
 
 schema = BaseFolderSchema + Schema((

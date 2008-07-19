@@ -1,11 +1,10 @@
 <configure
+    xmlns:cmf="http://namespaces.zope.org/cmf"
     xmlns:gs="http://namespaces.zope.org/genericsetup"
-    xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="FoundationMember">
 
-  <!-- Register the GenericSetup extension profile so that we can
-       install the product
-  -->
+  <cmf:registerDirectory name="skins" />
+
   <gs:registerProfile
       name="default"
       title="FoundationMember"
