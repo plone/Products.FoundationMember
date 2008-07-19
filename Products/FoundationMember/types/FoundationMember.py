@@ -1,5 +1,19 @@
-from Products.Archetypes.atapi import *
-from Products.FoundationMember.config import *
+from Products.Archetypes.atapi import BaseFolder
+from Products.Archetypes.atapi import BaseFolderSchema
+from Products.Archetypes.atapi import ComputedField
+from Products.Archetypes.atapi import DisplayList
+from Products.Archetypes.atapi import IdWidget
+from Products.Archetypes.atapi import IntegerField
+from Products.Archetypes.atapi import IntegerWidget
+from Products.Archetypes.atapi import RichWidget
+from Products.Archetypes.atapi import Schema
+from Products.Archetypes.atapi import SelectionWidget
+from Products.Archetypes.atapi import StringField
+from Products.Archetypes.atapi import StringWidget
+from Products.Archetypes.atapi import TextField
+from Products.Archetypes.atapi import registerType
+from Products.FoundationMember.config import VIEW_PF_MEMBERS_DETAIL
+from Products.FoundationMember.config import MANAGE_PF_MEMBERS
 from AccessControl import ClassSecurityInfo
 
 schema = BaseFolderSchema + Schema((
@@ -120,7 +134,7 @@ schema = BaseFolderSchema + Schema((
                 ),
             allowable_content_types=('text/html','text/structured','text/restructured'),
             default_content_type='text/html',
-            default_output_type='text/html',
+            default_output_type='text/x-html-safe',
             schemata='merit',
         read_permission=VIEW_PF_MEMBERS_DETAIL,
             ),
@@ -142,7 +156,7 @@ schema = BaseFolderSchema + Schema((
                 ),
             allowable_content_types=('text/html','text/structured','text/restructured'),
             default_content_type='text/html',
-            default_output_type='text/html',
+            default_output_type='text/x-html-safe',
             schemata='survey',
         read_permission=VIEW_PF_MEMBERS_DETAIL,
             ),

@@ -1,17 +1,15 @@
 from setuptools import setup, find_packages
+import os.path
 
-version = '1.1'
+version = '1.0b1'
 
 setup(name='Products.FoundationMember',
       version=version,
       description="Product for Foundation Members.",
-      long_description="""\
-Written for the Plone Foundation, to allow people to sign up as members, and be approved by a membership committee.""",
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
+      long_description=open("README.txt").read() + "\n" +
+                       open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
         "Framework :: Plone",
-        "Framework :: Zope2",
-        "Framework :: Zope3",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
@@ -26,9 +24,5 @@ Written for the Plone Foundation, to allow people to sign up as members, and be 
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
       ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
       )

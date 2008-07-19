@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
-<object name="portal_skins" allow_any="False" cookie_persistence="False"
-   default_skin="FoundationMember">
+<object name="portal_skins">
 
  <object name="foundationmember"
     meta_type="Filesystem Directory View"
     directory="Products.FoundationMember:skins/foundationmember"/>
 
- <skin-path name="FoundationMember" based-on="Plone Default">
-  <layer name="foundationmember"
-     insert-after="custom"/>
+ <skin-path name="*">
+  <layer name="foundationmember" insert-after="custom"/>
  </skin-path>
 </object>
