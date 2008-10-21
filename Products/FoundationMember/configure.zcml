@@ -3,7 +3,7 @@
     xmlns:gs="http://namespaces.zope.org/genericsetup"
     i18n_domain="FoundationMember">
 
-  <cmf:registerDirectory name="skins" />
+  <cmf:registerDirectory name="foundationmember" />
 
   <gs:registerProfile
       name="default"
