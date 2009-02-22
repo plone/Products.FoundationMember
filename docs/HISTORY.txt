@@ -4,6 +4,9 @@ Changelog
 1.0 - Unreleased
 ----------------
 
+* Added a specific add permission for more finer-grained control of where
+  foundation members can be added.
+  [MatthewWilkes]
 
 1.0b1 - July 20, 2008
 ---------------------
