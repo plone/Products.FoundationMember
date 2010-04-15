@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from Products.Archetypes.atapi import BaseFolder
 from Products.Archetypes.atapi import BaseFolderSchema
 from Products.Archetypes.atapi import ComputedField
