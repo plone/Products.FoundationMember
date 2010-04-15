@@ -16,6 +16,7 @@ from Products.Archetypes.atapi import TextField
 from Products.Archetypes.atapi import registerType
 from Products.FoundationMember.config import VIEW_PF_MEMBERS_DETAIL
 from Products.FoundationMember.config import MANAGE_PF_MEMBERS
+from Products.FoundationMember.config import PROJECTNAME
 from AccessControl import ClassSecurityInfo
 
 schema = BaseFolderSchema + Schema((
@@ -459,5 +460,4 @@ contributions are enduring and general.</p>"""
             ('ZM','Zambia'),
             ('ZW','Zimbabwe'),
             ))
-
-registerType(FoundationMember)
+registerType(FoundationMember, PROJECTNAME)
