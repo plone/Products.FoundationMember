@@ -1,190 +1,235 @@
 <?xml version="1.0"?>
-<dc-workflow workflow_id="foundation_member_workflow"
-             title="Approval process for foundation members"
-             state_variable="review_state"
-             initial_state="initial">
+<dc-workflow workflow_id="plone-foundation-member-workflow" title="Plone Foundation Member Workflow" description="- Essentially a workflow with no transitions, but has a Published state, so portlets and applications that expect that state will continue to work." state_variable="review_state" initial_state="initial" manager_bypass="False">
  <permission>Access contents information</permission>
+ <permission>Change portal events</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
- <permission>Change portal events</permission>
- <state state_id="approved" title="Approved member">
-  <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="resign"/>
-  <exit-transition transition_id="renew"/>
-  <exit-transition transition_id="retire"/>
-  <permission-map name="Access contents information"
-                  acquired="True">
+ <permission>Review portal content</permission>
+ <permission>List folder contents</permission>
+ <state state_id="approved" title="Active Member">
+  <exit-transition transition_id="withdraw-membership"/>
+  <exit-transition transition_id="terminate-membership"/>
+  <exit-transition transition_id="become-emeritus"/>
+  <exit-transition transition_id="expire-membership"/>
+  <permission-map name="Access contents information" acquired="False">
    <permission-role>Anonymous</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Member</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
-  <permission-map name="Change portal events"
-                  acquired="False">
+  <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
-  <permission-map name="Modify portal content"
-                  acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
-  </permission-map>
-  <permission-map name="View" acquired="True">
+  <permission-map name="View" acquired="False">
    <permission-role>Anonymous</permission-role>
    <permission-role>Manager</permission-role>
+   <permission-role>Member</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
- <state state_id="emeritus" title="Emeritus member">
-  <exit-transition transition_id="submit"/>
-  <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="retract"/>
-  <permission-map name="Access contents information"
-                  acquired="False">
+ <state state_id="initial" title="Draft Application">
+  <exit-transition transition_id="submit-for-review"/>
+  <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
-  <permission-map name="Change portal events"
-                  acquired="False">
+  <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-  </permission-map>
-  <permission-map name="Modify portal content"
-                  acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
- <state state_id="initial" title="Non-member">
-  <exit-transition transition_id="approve"/>
-  <exit-transition transition_id="submit"/>
-  <permission-map name="Access contents information"
-                  acquired="False">
+ <state state_id="emeritus" title="Emeritus Member">
+  <exit-transition transition_id="terminate-membership"/>
+  <exit-transition transition_id="withdraw-membership"/>
+  <exit-transition transition_id="reactivate-membership"/>
+  <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
-  <permission-map name="Change portal events"
-                  acquired="False">
+  <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-  </permission-map>
-  <permission-map name="Modify portal content"
-                  acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
- <state state_id="pending" title="Waiting for reviewer">
-  <exit-transition transition_id="approve"/>
-  <exit-transition transition_id="reject"/>
-  <exit-transition transition_id="retract"/>
-  <permission-map name="Access contents information"
-                  acquired="False">
+ <state state_id="expired" title="Expired Member">
+  <exit-transition transition_id="withdraw-membership"/>
+  <exit-transition transition_id="terminate-membership"/>
+  <exit-transition transition_id="become-emeritus"/>
+  <exit-transition transition_id="renew-membership"/>
+  <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
-  <permission-map name="Change portal events"
-                  acquired="False">
+  <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-  </permission-map>
-  <permission-map name="Modify portal content"
-                  acquired="False">
-   <permission-role>Manager</permission-role>
-   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Owner</permission-role>
-   <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
- <transition transition_id="approve"
-             title="Member is approved" new_state="approved"
-             trigger="USER" before_script="" after_script="">
-  <action url="%(content_url)s/content_publish_form"
-          category="workflow">Approve</action>
+ <state state_id="rejected" title="Rejected Application">
+  <exit-transition transition_id="submit-for-review"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="pending" title="Under Review">
+  <exit-transition transition_id="request-more-information"/>
+  <exit-transition transition_id="approve-membership"/>
+  <exit-transition transition_id="reject-application"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+ </state>
+ <state state_id="withdrawn" title="Inactivated Member">
+  <description>Members who have withdrawn or been terminated.  These members may resubmit their application per bylaws.</description>
+  <exit-transition transition_id="submit-for-review"/>
+  <permission-map name="Access contents information" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="View" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Owner</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+ </state>
+ <transition before_script="" after_script="" transition_id="approve-membership" title="Approve Membership" new_state="approved" trigger="USER">
+  <description>Approve member after board vote to admit.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=approve-membership" category="workflow" icon="">Approve Membership</action>
   <guard>
-   <guard-permission>Foundation Member: Manage Members</guard-permission>
+   <guard-role>Site Administrator</guard-role>
+   <guard-role>Manager</guard-role>
   </guard>
  </transition>
- <transition transition_id="reject"
-             title="Reviewer rejects submission"
-             new_state="initial" trigger="USER"
-             before_script="" after_script="">
-  <action url="%(content_url)s/content_reject_form"
-          category="workflow">Reject</action>
+ <transition before_script="" after_script="" transition_id="become-emeritus" title="Convert to Emeritus" new_state="emeritus" trigger="USER">
+  <description>Transition to Emeritus Member.  Typically done en-masse after renewal period elapses.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=become-emeritus" category="workflow" icon="">Become Emeritus</action>
   <guard>
-   <guard-permission>Foundation Member: Manage Members</guard-permission>
+   <guard-role>Owner</guard-role>
+   <guard-role>Site Administrator</guard-role>
+   <guard-role>Manager</guard-role>
   </guard>
  </transition>
- <transition transition_id="renew"
-             title="Member renews membership"
-             new_state="approved" trigger="USER"
-             before_script="" after_script="">
-  <action url="%(content_url)s/view" category="workflow">Renew</action>
+ <transition before_script="" after_script="" transition_id="expire-membership" title="Expire Membership" new_state="expired" trigger="USER">
+  <description>Expire members in preparation for annual renewal cycle.  Only managers can do this.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=expire-membership" category="workflow" icon="">Expire Membership</action>
   <guard>
-   <guard-permission>Modify portal content</guard-permission>
+   <guard-role>Site Administrator</guard-role>
+   <guard-role>Manager</guard-role>
   </guard>
  </transition>
- <transition transition_id="resign" title="Resign"
-             new_state="initial" trigger="USER"
-             before_script="" after_script="">
-  <action url="http://" category="workflow">Resign</action>
+ <transition before_script="" after_script="" transition_id="reactivate-membership" title="Reactivate Membership" new_state="approved" trigger="USER">
+  <description>Emeritus member reactivates their membership.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=reactivate-membership" category="workflow" icon="">Reactivate Membership</action>
+  <guard>
+   <guard-role>Owner</guard-role>
+   <guard-role>Site Administrator</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition before_script="" after_script="" transition_id="reject-application" title="Reject Application" new_state="rejected" trigger="USER">
+  <description>Reject application following board vote.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=reject-application" category="workflow" icon="">Reject Application</action>
+  <guard>
+   <guard-role>Site Administrator</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition before_script="" after_script="" transition_id="renew-membership" title="Renew Membership" new_state="approved" trigger="USER">
+  <description>Member renews their membership.  Happens annually.  Failure to renew during window results in conversion to Emeritus status.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=renew-membership" category="workflow" icon="">Renew Membership</action>
+  <guard>
+   <guard-role>Owner</guard-role>
+   <guard-role>Site Administrator</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition before_script="" after_script="" transition_id="request-more-information" title="Request More Information" new_state="initial" trigger="USER">
+  <action url="%(content_url)s/content_status_modify?workflow_action=request-more-information" category="workflow" icon="">Request More Information</action>
+  <guard>
+   <guard-role>Site Administrator</guard-role>
+   <guard-role>Manager</guard-role>
+  </guard>
+ </transition>
+ <transition before_script="" after_script="" transition_id="submit-for-review" title="Submit for Review" new_state="pending" trigger="USER">
+  <action url="%(content_url)s/content_status_modify?workflow_action=submit-for-review" category="workflow" icon="">Submit for Review</action>
   <guard>
    <guard-role>Owner</guard-role>
   </guard>
  </transition>
- <transition transition_id="retire" title="Retire member"
-             new_state="emeritus" trigger="USER"
-             before_script="" after_script="">
-  <action url="%(content_url)s/view" category="workflow">Retire</action>
+ <transition before_script="" after_script="" transition_id="terminate-membership" title="Terminate Membership" new_state="withdrawn" trigger="USER">
+  <description>Terminate membership following vote of membership or board.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=terminate-membership" category="workflow" icon="">Terminate Membership</action>
   <guard>
-   <guard-permission>Foundation Member: Manage Members</guard-permission>
+   <guard-role>Site Administrator</guard-role>
+   <guard-role>Manager</guard-role>
   </guard>
  </transition>
- <transition transition_id="retract"
-             title="Member retracts submission"
-             new_state="initial" trigger="USER"
-             before_script="" after_script="">
-  <action url="%(content_url)s/content_retract_form"
-          category="workflow">Retract</action>
+ <transition before_script="" after_script="" transition_id="withdraw-membership" title="Withdraw Membership" new_state="withdrawn" trigger="USER">
+  <description>Owner can withdraw their membership.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=withdraw-membership" category="workflow" icon="">Withdraw Membership</action>
   <guard>
-   <guard-permission>Request review</guard-permission>
+   <guard-role>Owner</guard-role>
+   <guard-role>Site Administrator</guard-role>
+   <guard-role>Manager</guard-role>
   </guard>
  </transition>
- <transition transition_id="submit"
-             title="Member requests publishing"
-             new_state="pending" trigger="USER"
-             before_script="" after_script="">
-  <action url="%(content_url)s/content_submit_form"
-          category="workflow">Submit</action>
-  <guard>
-   <guard-permission>Request review</guard-permission>
-  </guard>
- </transition>
- <worklist worklist_id="reviewer_queue" title="">
-  <description>Reviewer tasks</description>
-  <action url="%(portal_url)s/search?review_state=pending"
-          category="global">Pending (%(count)d)</action>
-  <guard>
-   <guard-role>PFMembershipCommittee</guard-role>
-  </guard>
-  <match name="review_state" values="pending"/>
- </worklist>
- <variable variable_id="action" for_catalog="False"
-           for_status="True" update_always="True">
-  <description>The last transition</description>
+ <variable variable_id="action" for_catalog="False" for_status="True" update_always="True">
+  <description>Previous transition</description>
   <default>
    
    <expression>transition/getId|nothing</expression>
@@ -192,9 +237,8 @@
   <guard>
   </guard>
  </variable>
- <variable variable_id="actor" for_catalog="False"
-           for_status="True" update_always="True">
-  <description>The ID of the user who performed the last transition</description>
+ <variable variable_id="actor" for_catalog="False" for_status="True" update_always="True">
+  <description>The ID of the user who performed the previous transition</description>
   <default>
    
    <expression>user/getId</expression>
@@ -202,9 +246,8 @@
   <guard>
   </guard>
  </variable>
- <variable variable_id="comments" for_catalog="False"
-           for_status="True" update_always="True">
-  <description>Comments about the last transition</description>
+ <variable variable_id="comments" for_catalog="False" for_status="True" update_always="True">
+  <description>Comment about the last transition</description>
   <default>
    
    <expression>python:state_change.kwargs.get('comment', '')</expression>
@@ -212,8 +255,7 @@
   <guard>
   </guard>
  </variable>
- <variable variable_id="review_history" for_catalog="False"
-           for_status="False" update_always="False">
+ <variable variable_id="review_history" for_catalog="False" for_status="False" update_always="False">
   <description>Provides access to workflow history</description>
   <default>
    
@@ -224,9 +266,8 @@
    <guard-permission>Review portal content</guard-permission>
   </guard>
  </variable>
- <variable variable_id="time" for_catalog="False"
-           for_status="True" update_always="True">
-  <description>Time of the last transition</description>
+ <variable variable_id="time" for_catalog="False" for_status="True" update_always="True">
+  <description>When the previous transition was performed</description>
   <default>
    
    <expression>state_change/getDateTime</expression>
